@@ -147,7 +147,7 @@ class Calculator
      */
     public function subBusinessDays($howManyDays)
     {
-        return $this->calculateBusinessDays($howManyDays, '+1 day');
+        return $this->calculateBusinessDays($howManyDays, '-1 day');
 //        $iterator = 0;
 //        while ($iterator < $howManyDays) {
 //            if ($this->isBusinessDay($this->getDate())) {
