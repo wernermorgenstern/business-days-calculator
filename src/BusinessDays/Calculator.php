@@ -121,17 +121,17 @@ class Calculator
         
         $iterator = 0;
         while ($iterator < $howManyDays) {
-            if ($modifier == "+1 day") {
-                $this->getDate()->modify($modifier);
+            if ($modifier == '+1 day') {
+                $this->getDate()->modify('+1 day');
                 if ($this->isBusinessDay($this->getDate())) {
                     $iterator++;
                 }
-            } else if ($modifier == "-1 day") {
+            } else if ($modifier == '-1 day') {
                 if ($this->isBusinessDay($this->getDate())) {
                     $iterator++;
                 }
                 if ($iterator < $howManyDays) { //Don`t modify the date if we are on the last iteration
-                    $this->getDate()->modify($modifier);
+                    $this->getDate()->modify('-1 day');
                 }
             }
         }
