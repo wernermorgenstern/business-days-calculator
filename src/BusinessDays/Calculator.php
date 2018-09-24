@@ -113,32 +113,6 @@ class Calculator
         return $this->freeWeekDays;
     }
     
-    private function calculateBusinessDays($howManyDays, $modifier)
-    {
-        if ($howManyDays < 1) {
-            throw new \InvalidArgumentException('The parameter $howManyDays must be greater than 0');
-        }
-        
-        $iterator = 0;
-        while ($iterator < $howManyDays) {
-            if ($modifier == '+1 day') {
-                $this->getDate()->modify('+1 day');
-                if ($this->isBusinessDay($this->getDate())) {
-                    $iterator++;
-                }
-            } else if ($modifier == '-1 day') {
-                if ($this->isBusinessDay($this->getDate())) {
-                    $iterator++;
-                }
-                if ($iterator < $howManyDays) { //Don`t modify the date if we are on the last iteration
-                    $this->getDate()->modify('-1 day');
-                }
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @param int $howManyDays
      *
@@ -146,19 +120,20 @@ class Calculator
      */
     public function addBusinessDays($howManyDays)
     {
-        return $this->calculateBusinessDays($howManyDays, '+1 day');
+        if ($howManyDays < 1) {
+            throw new \InvalidArgumentException('The parameter $howManyDays must be greater than 0');
+        }
+        
+        $iterator = 0;
+        while ($iterator < $howManyDays) {
+            $this->getDate()->modify('+1 day');
+            if ($this->isBusinessDay($this->getDate())) {
+                $iterator++;
+            }
+        }
+
+        return $this;
     }
-    
-    /**
-     * @param int $howManyDays
-     *
-     * @return $this
-     */
-    public function subBusinessDays($howManyDays)
-    {
-        return $this->calculateBusinessDays($howManyDays, '-1 day');
-    }
-    
     
     /**
      * @return \DateTime
