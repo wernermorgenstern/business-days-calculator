@@ -120,6 +120,10 @@ class Calculator
      */
     public function addBusinessDays($howManyDays)
     {
+        if ($howManyDays < 1) {
+            throw new \InvalidArgumentException('The parameter $howManyDays must be greater than 0');
+        }
+        
         $iterator = 0;
         while ($iterator < $howManyDays) {
             $this->getDate()->modify('+1 day');
