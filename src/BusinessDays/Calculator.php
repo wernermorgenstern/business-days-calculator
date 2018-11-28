@@ -50,7 +50,7 @@ class Calculator
     }
 
     /**
-     * @param \DateTime[] $holidays Array of holidays that repeats each year. (Only month and date is used to match).
+     * @param \DateTime[] $holidays Array of holidays that repeats each year. (We need to use Year too, and not nly month and date is used to match).
      *
      * @return $this
      */
