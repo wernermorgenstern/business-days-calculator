@@ -19,7 +19,7 @@ class Calculator
     const SUNDAY    = 7;
 
     const WEEK_DAY_FORMAT = 'N';
-    const HOLIDAY_FORMAT  = 'm-d';
+    const HOLIDAY_FORMAT  = 'Y-m-d';
     const FREE_DAY_FORMAT = 'Y-m-d';
 
     /** @var \DateTime */
